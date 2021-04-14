@@ -10,7 +10,7 @@ As of now, these are the functions I plan on implementing. As the project mature
 
 - [x] sscalv, dscalv
 - [x] sdot, ddot
-- [x] saxpy, saxpy
+- [x] saxpy, daxpy
 
 ## Level 2
 

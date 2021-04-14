@@ -112,6 +112,26 @@ void __init(){
 						 {{1, 1}, {1, 1048576}, {1, 1048576}}, {{1, 1}, {1, 1310720}, {1, 1310720}}, {{1, 1}, {1, 2097152}, {1, 2097152}}, \
 						 {{1, 1}, {1, 4194304}, {1, 4194304}}, {{1, 1}, {1, 8388608}, {1, 8388608}}, {{1, 1}, {1, 16777216}, {1, 16777216}}, \
 						 {{1, 1}, {1, 33554432}, {1, 33554432}}, {{1, 1}, {1, 67108864}, {1, 67108864}}};
+
+	config["sgemv"] = 	{{{1, 1}, {99, 127}, {127, 1}, {1, 1}, {99, 1}}, {{1, 1}, {159, 159}, {159, 1}, {1, 1}, {159, 1}}, \
+						 {{1, 1}, {262, 291}, {291, 1}, {1, 1}, {262, 1}}, {{1, 1}, {383, 399}, {399, 1}, {1, 1}, {383, 1}}, \
+						 {{1, 1}, {537, 570}, {570, 1}, {1, 1}, {537, 1}}, {{1, 1}, {723, 723}, {723, 1}, {1, 1}, {723, 1}}, \
+						 {{1, 1}, {1127, 1161}, {1161, 1}, {1, 1}, {1127, 1}}, {{1, 1}, {1447, 1447}, {1447, 1}, {1, 1}, {1447, 1}}, \
+						 {{1, 1}, {1772, 1773}, {1773, 1}, {1, 1}, {1772, 1}}, {{1, 1}, {2047, 2047}, {2047, 1}, {1, 1}, {2047, 1}}, \
+						 {{1, 1}, {2270, 2308}, {2308, 1}, {1, 1}, {2270, 1}}, {{1, 1}, {2876, 2915}, {2915, 1}, {1, 1}, {2876, 1}}, \
+						 {{1, 1}, {4095, 4095}, {4095, 1}, {1, 1}, {4095, 1}}, {{1, 1}, {5791, 5792}, {5792, 1}, {1, 1}, {5791, 1}}, \
+						 {{1, 1}, {8191, 8191}, {8191, 1}, {1, 1}, {8191, 1}}, {{1, 1}, {11584, 11584}, {11584, 1}, {1, 1}, {11584, 1}}, \
+						 {{1, 1}, {16383, 16383}, {16383, 1}, {1, 1}, {16383, 1}}};
+
+	config["dgemv"] = 	{{{1, 1}, {63, 99}, {99, 1}, {1, 1}, {63, 1}}, {{1, 1}, {99, 127}, {127, 1}, {1, 1}, {99, 1}}, \
+						 {{1, 1}, {181, 210}, {210, 1}, {1, 1}, {181, 1}}, {{1, 1}, {262, 291}, {291, 1}, {1, 1}, {262, 1}}, \
+						 {{1, 1}, {383, 399}, {399, 1}, {1, 1}, {383, 1}}, {{1, 1}, {511, 511}, {511, 1}, {1, 1}, {511, 1}}, \
+						 {{1, 1}, {808, 809}, {809, 1}, {1, 1}, {808, 1}}, {{1, 1}, {1023, 1023}, {1023, 1}, {1, 1}, {1023, 1}}, \
+						 {{1, 1}, {1253, 1253}, {1253, 1}, {1, 1}, {1253, 1}}, {{1, 1}, {1447, 1447}, {1447, 1}, {1, 1}, {1447, 1}}, \
+						 {{1, 1}, {1618, 1618}, {1618, 1}, {1, 1}, {1618, 1}}, {{1, 1}, {2047, 2047}, {2047, 1}, {1, 1}, {2047, 1}}, \
+						 {{1, 1}, {2876, 2915}, {2915, 1}, {1, 1}, {2876, 1}}, {{1, 1}, {4095, 4095}, {4095, 1}, {1, 1}, {4095, 1}}, \
+						 {{1, 1}, {5791, 5792}, {5792, 1}, {1, 1}, {5791, 1}}, {{1, 1}, {8191, 8191}, {8191, 1}, {1, 1}, {8191, 1}}, \
+						 {{1, 1}, {11584, 11584}, {11584, 1}, {1, 1}, {11584, 1}}};
 }
 
 /**
@@ -162,6 +182,10 @@ template<typename T>
 void _dot_verify(std::ifstream &ifs, std::fstream &ofs, T (*dot)(int, const T*, int, const T*, int));
 template<typename T>
 void _axpy_verify(std::ifstream &ifs, std::fstream &ofs, void (*dot)(const int, const T, const T*, const int, T*, const int));
+template<typename T>
+void _gemv_verify(std::ifstream &ifs, std::fstream &ofs, void (*gemv) (const enum CBLAS_ORDER, const enum CBLAS_TRANSPOSE, const int, const int, 
+							const T, const T*, const int, const T*, const int, const T, 
+							T*, const int));
 
 #define INPUT_DIR "input/"
 #define VERIF_DIR "verification/"
@@ -193,8 +217,27 @@ int main(void){
 			else if (benchmark == "ddot") _dot_verify(ifs, ofs, cblas_ddot);
 			else if (benchmark == "saxpy") _axpy_verify<float>(ifs, ofs, cblas_saxpy);
 			else if (benchmark == "daxpy") _axpy_verify<double>(ifs, ofs, cblas_daxpy);
+			else if (benchmark == "sgemv") _gemv_verify<float>(ifs, ofs, cblas_sgemv);
+			else if (benchmark == "dgemv") _gemv_verify<double>(ifs, ofs, cblas_dgemv);
 		}
 	}
+}
+
+template<typename T>
+void _gemv_verify(std::ifstream &ifs, std::fstream &ofs, void (*gemv) (const enum CBLAS_ORDER, const enum CBLAS_TRANSPOSE, const int, const int, 
+							const T, const T*, const int, const T*, const int, const T, 
+							T*, const int)){
+	std::vector<std::pair<T*, std::pair<int, int>>> args = parse_input<T>(ifs);
+	T alpha = *(args[0].ff);
+	int N = args[1].ss.ff;
+	int M = args[1].ss.ss;
+	T *A = args[1].ff;
+	T *X = args[2].ff;
+	T beta = *(args[3].ff);
+	T *Y = args[4].ff;
+	gemv(CblasRowMajor, CblasNoTrans, N, M, alpha, A, M, X, 1, beta, Y, 1);
+	write_verification<T>(ofs, N, 1, Y);
+	for(auto &arg:args) free(arg.ff);
 }
 
 template<typename T>
