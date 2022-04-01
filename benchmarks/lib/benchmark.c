@@ -4,30 +4,6 @@
 #include "benchmark.h"
 
 /**
- *	struct timespec {
-		time_t   tv_sec;        // seconds
-		long     tv_nsec;       // nanoseconds
- 	}; 
-
- 	Useful Clock IDs:
- 	- CLOCK_REALTIME :	A settable system-wide clock that measures real wall- clock time.  
- 						This clock is affected by discontinuous jumps in the system time, 
- 						and by the incremental adjustments performed by adjtime(3) and NTP.
-
- 	- CLOCK_MONOTONIC : A system-wide clock that represents monotonic time some unspecified 
- 						point in the past. On Linux, that point corresponds to the number of 
- 						seconds that the system has been running since it was booted. This clock 
- 						is affected by the incremental adjustments performed by adjtime(3) and NTP.
-
- 	- CLOCK_MONOTONIC_RAW :	Similar to CLOCK_MONOTONIC, but provides access to a raw hardware-based 
- 							time that is not subject to NTP adjustments	or the incremental adjustments 
- 							performed by adjtime(3).
-
- 	- CLOCK_PROCESS_CPUTIME_ID : This is a clock that measures CPU time consumed by this process
- 	- CLOCK_THREAD_CPUTIME_ID : This is a clock that measures CPU time consumed by this thread.
- */
-
-/**
  * Outputs details about the precision of the clocks on the system and other useful hardware spec 
  * information
  */
