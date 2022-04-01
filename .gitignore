@@ -3,6 +3,7 @@
 
 # Object files
 *.o
+*.optrpt
 *.ko
 *.obj
 *.elf
@@ -50,3 +51,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# External benchmark tools
+benchmarks/Flops/
+benchmarks/stream/
