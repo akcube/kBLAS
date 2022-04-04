@@ -2,6 +2,7 @@
 #define __BENCHMARK_TOOLS
 
 #include <stdint.h>
+#include <time.h>
 
 /**
  * @member 	result - The result of the FLOPS computed by the kernel
@@ -25,8 +26,7 @@ typedef struct KernelArgs{
 
 void output_hwinfo();
 
-long double tick();
-long double tock();
+long double tick_tock(struct timespec *tinfo);
 Result benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name);
 
 #endif
