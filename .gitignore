@@ -54,4 +54,3 @@ dkms.conf
 
 # External benchmark tools
 benchmarks/Flops/
-benchmarks/stream/
