@@ -393,19 +393,16 @@ checktick()
 
 
 
-/* A gettimeofday routine to give access to the wall
-   clock timer on most UNIX-like systems.  */
+/* A clock_gettime routine to give access to the CPU
+   realtime timer on most UNIX-like systems.  */
 
-#include <sys/time.h>
+#include <time.h>
 
 double mysecond()
 {
-        struct timeval tp;
-        struct timezone tzp;
-        int i;
-
-        i = gettimeofday(&tp,&tzp);
-        return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
+        struct timespec tinfo;        
+        clock_gettime(CLOCK_REALTIME, &tinfo);
+        return (double) tinfo.tv_sec + tinfo.tv_nsec * 1e-9;
 }
 
 #ifndef abs
