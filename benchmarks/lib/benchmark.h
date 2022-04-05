@@ -29,4 +29,5 @@ void output_hwinfo();
 long double tick_tock(struct timespec *tinfo);
 Result benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name);
 
+Result n_benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, int iters, char *name);
 #endif

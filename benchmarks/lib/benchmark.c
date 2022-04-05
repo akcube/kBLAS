@@ -34,6 +34,21 @@ long double tick_tock(struct timespec *tinfo){
 }
 
 /**
+ * Pretty prints the result returned by a benchmark
+ * @param st - The start time of the benchmark
+ * @param en - The end time of the benchmark
+ * @param ret - The result obtained by the benchmark over all runs
+ */
+void pretty_print(long double duration, Result ret){
+	printf("\nTotal runtime:\t\t\t%Lf\n", duration);
+	printf("Result computed:\t\t%lf\n", ret.result);
+	printf("Total FLOPS computed:\t\t%lu\n", ret.flop_ct);
+	printf("Total memory accesses:\t\t%lu\n", ret.mem_accesses);
+	printf("\nGFLOPS:\t\t\t\t%Lf\n", (long double) ret.flop_ct / duration * 1e-9);
+	printf("Bandwidth:\t\t\t%Lf GB/s\n\n", (long double) ret.mem_accesses / duration * 1e-9);
+}
+
+/**
  * Given some kernel which takes in `args` as params, it runs the kernel repeatedly until a minimum of 
  * `duration` seconds has passed and outputs the GFLOPS/sec achieved by the kernel and other bench info.
  * This is first done on a single thread, then run again over all threads. Information for both tests 
@@ -63,11 +78,7 @@ Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double
 		printf("\nSingle-thread:\tBenchmark information - %s\n", name);
 		for(int i=0; i<60; i++) printf("-");
 
-		printf("\nTotal runtime:\t\t\t%Lf\n", en - st);
-		printf("Result computed:\t\t%lf\n", ret.result);
-		printf("Total FLOPS computed:\t\t%lu\n", ret.flop_ct);
-		printf("Total memory accesses:\t\t%lu\n", ret.mem_accesses);
-		printf("\nGFLOPS:\t\t\t\t%Lf\n\n", (long double) ret.flop_ct/(en - st) * 1e-9);
+		pretty_print(en - st, ret);
 	}
 	// Multi-thread run
 	{
@@ -85,14 +96,11 @@ Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double
 			ret.mem_accesses += t.mem_accesses;
 		} while((en = tick_tock(tinfo)) < min_duration);
 
+		en = tick_tock(tinfo);		
 		for(int i=0; i<60; i++) printf("-");
 		printf("\nMulti-thread:\tBenchmark information - %s\n", name);
 		for(int i=0; i<60; i++) printf("-");
 
-		printf("\nTotal runtime:\t\t\t%Lf\n", en - st);
-		printf("Result computed:\t\t%lf\n", ret.result);
-		printf("Total FLOPS computed:\t\t%lu\n", ret.flop_ct);
-		printf("Total memory accesses:\t\t%lu\n", ret.mem_accesses);
-		printf("\nGFLOPS:\t\t\t\t%Lf\n\n", (long double) ret.flop_ct/(en - st) * 1e-9);
+		pretty_print(en - st, ret);
 	}
 }
