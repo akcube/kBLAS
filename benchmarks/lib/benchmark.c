@@ -1,6 +1,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "benchmark.h"
 
 /**
@@ -57,8 +58,9 @@ void pretty_print(long double duration, Result ret){
  * @param 	args - The arguments to be passed to the kernel
  * @param 	duration - The minimum amount of time to run the kernel for
  * @param 	name - The name / header to display when outputting benchmark details
+ * @param 	parallel - Run the benchmark parallelized over all threads
  */
-Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double duration, char *name){
+Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel){
 	// Single thread run
 	{
 		struct timespec *tinfo = malloc(sizeof(struct timespec));
@@ -81,6 +83,7 @@ Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double
 		pretty_print(en - st, ret);
 	}
 	// Multi-thread run
+	if(parallel)
 	{
 		struct timespec *tinfo = malloc(sizeof(struct timespec));
 		Result ret = {0.0, 0, 0};

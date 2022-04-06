@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <time.h>
+#include <stdbool.h>
 
 /**
  * @member 	result - The result of the FLOPS computed by the kernel
@@ -27,7 +28,6 @@ typedef struct KernelArgs{
 void output_hwinfo();
 
 long double tick_tock(struct timespec *tinfo);
-Result benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name);
+Result benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel);
 
-Result n_benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, int iters, char *name);
 #endif
