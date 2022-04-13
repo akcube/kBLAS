@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "benchmark.h"
+#include <benchmark.h>
 
 /**
  * Outputs details about the precision of the clocks on the system and other useful hardware spec 
@@ -50,6 +50,17 @@ void pretty_print(long double duration, Result ret){
 }
 
 /**
+ * Pretty prints only the GFLOPS & Bandwidth info returned by a benchmark
+ * @param st - The start time of the benchmark
+ * @param en - The end time of the benchmark
+ * @param ret - The result obtained by the benchmark over all runs
+ */
+void compressed_pretty_print(long double duration, Result ret){
+	printf("\nGFLOPS:\t\t\t\t%Lf\n", (long double) ret.flop_ct / duration * 1e-9);
+	printf("Bandwidth:\t\t\t%Lf GB/s\n", (long double) ret.mem_accesses / duration * 1e-9);
+}
+
+/**
  * Given some kernel which takes in `args` as params, it runs the kernel repeatedly until a minimum of 
  * `duration` seconds has passed and outputs the GFLOPS/sec achieved by the kernel and other bench info.
  * This is first done on a single thread, then run again over all threads. Information for both tests 
@@ -60,7 +71,7 @@ void pretty_print(long double duration, Result ret){
  * @param 	name - The name / header to display when outputting benchmark details
  * @param 	parallel - Run the benchmark parallelized over all threads
  */
-Result benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel){
+void benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel){
 	// Single thread run
 	{
 		struct timespec *tinfo = malloc(sizeof(struct timespec));
