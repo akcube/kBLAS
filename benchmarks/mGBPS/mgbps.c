@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "benchmark.h"
+#include <benchmark.h>
 #include <immintrin.h>
 #include <omp.h>
 
