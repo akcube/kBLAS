@@ -14,6 +14,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 # The KBLAS library code is here
 add_subdirectory(src)
 
-# All the benchmark code is here. This includes the roofline memory and FLOPs benchmarks
-# + the KBLAS vs BLIS benchmarks
+# The benchmark library code is here
+add_subdirectory(lib)
+
+# This includes the roofline memory analysis for bandwidth and FLOPS
+add_subdirectory(roofline-analysis)
+
+# Contains the code for all the KBLAS vs BLIS benchmarks
 add_subdirectory(benchmarks)

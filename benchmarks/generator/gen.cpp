@@ -4,7 +4,6 @@
 #include <cblas.h>
 #include <map>
 #include <string.h>
-#include "config.h"
 
 /**
  * We trust the outputs from the CBLAS library to be accurate.
@@ -126,6 +125,9 @@ void write_verification(std::fstream &fs, int N, int M, T *data){
 
 template<typename T>
 void _scal_verify(std::ifstream &ifs, std::fstream &ofs, void (*fun)(int, T, T*, int));
+
+#define INPUT_DIR "input/"
+#define VERIF_DIR "verification/"
 
 int main(void){
 	__init();
