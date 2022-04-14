@@ -134,7 +134,7 @@ int main(void){
 	for(auto &[benchmark, confs]:config){
 		int num_confs = confs.size();
 		for(int i=0; i<num_confs; i++){
-			std::cout<<"["<<i+1<<"/"<<num_confs<<"] Generating input files for\t"<<benchmark<<"\n";
+			std::cout<<"["<<i+1<<"/"<<num_confs<<"]\tGenerating input files for "<<benchmark<<"\n";
 			std::fstream fs(INPUT_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
 			if(benchmark[0] == 's') write_config<float>(confs[i], fs);
 			else if(benchmark[0] == 'd') write_config<double>(confs[i], fs);
@@ -145,11 +145,11 @@ int main(void){
 	for(auto &[benchmark, confs]:config){
 		int num_confs = confs.size();
 		for(int i=0; i<num_confs; i++){
-			std::cout<<"["<<i+1<<"/"<<num_confs<<"] Running CBLAS on input file for\t"<<benchmark<<"\n";
+			std::cout<<"["<<i+1<<"/"<<num_confs<<"]\tRunning CBLAS on input file for "<<benchmark<<"\n";
 			std::ifstream ifs(INPUT_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
 			std::fstream ofs(VERIF_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
-			if 		(benchmark == 'sscal') _scal_verify(ifs, ofs, cblas_sscal);
-			else if (benchmark == 'sscal') _scal_verify(ifs, ofs, cblas_sscal);
+			if 		(benchmark == "sscal") _scal_verify(ifs, ofs, cblas_sscal);
+			else if (benchmark == "dscal") _scal_verify(ifs, ofs, cblas_dscal);
 		}
 	}
 }
