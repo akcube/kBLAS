@@ -69,3 +69,7 @@ CTestTestfile.cmake
 _deps
 
 build/
+
+# Generated input / test files gitignore 
+benchmarks/kblas/input/
+benchmarks/kblas/verification/
