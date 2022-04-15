@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <time.h>
+#include <stdio.h>
 #include <stdbool.h>
 
 /**
@@ -32,7 +33,15 @@ void compressed_pretty_print(long double duration, Result ret);
 long double tick_tock(struct timespec *tinfo);
 
 void benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel);
+void mem_flush(const void *p, unsigned int allocation_size);
 
+char *get_filepath(const char *path, const char *fname);
+
+bool fverify_benchmark(float *result, int n, int m, const char *dir, const char *bench);
+bool dverify_benchmark(double *result, int n, int m, const char *dir, const char *bench);
+
+float* get_farg(FILE *fptr, int *_n, int *_m);
+double* get_darg(FILE *fptr, int *_n, int *_m);
 /**
  * When the functions being benchmarked can't be conformed to the required 
  * function signature this is a hacky way to still run the same benchmark on 
@@ -45,20 +54,29 @@ void benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long dou
  * NAME - The name of the benchmark
  *
  * Usage:
- * BENCH_START(FRUN, MRUN, DUR, NAME) fun(arg1, arg2. ...) BENCH_END
+ * BENCH_START(FRUN, MRUN, DUR, NAME) 
+ *     reset_vars(...)
+ *     START_RECORD
+ *         fun(arg1, arg2. ...) 
+ *     END_RECORD
+ * BENCH_END
  */
 #define BENCH_START(FRUN, MRUN, DUR, NAME) { struct timespec *tinfo = malloc(sizeof(struct timespec)); \
-        Result ret = {0.0, 0, 0}; \
-        long double st = tick_tock(tinfo); \
-        long double min_duration = st + DUR, en; \
         for(int i=0; i<60; i++) printf("-"); \
         printf("\nBenchmark - %s\n", NAME); \
-        for(int i=0; i<60; i++) printf("-"); \
+        Result ret = {0.0, 0, 0}; \
+        long double min_duration = DUR; \
+        long double runtime = 0, st, en; \
         do { \
             ret.flop_ct += FRUN; \
             ret.mem_accesses += MRUN;
-#define BENCH_END } while((en = tick_tock(tinfo)) < min_duration); \
-        en = tick_tock(tinfo); \
-        compressed_pretty_print(en - st, ret); }
+
+#define START_RECORD st = tick_tock(tinfo);
+
+#define END_RECORD en = tick_tock(tinfo); \
+            runtime += en - st; \
+        } while(runtime < min_duration);
+
+#define BENCH_END compressed_pretty_print(runtime, ret); }
 
 #endif
