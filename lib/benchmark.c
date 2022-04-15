@@ -214,8 +214,11 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 	float *check = malloc(sizeof(float) * n * m);
 	int read = fread(check, sizeof(float), n*m, fptr);
 
-	if(read != n * m) return false;
-	return (memcmp(result, check, n*m) == 0);
+	bool valid = (memcmp(result, check, n*m) == 0) && (read == n * m);
+	fclose(fptr);
+	free(check);
+
+	return valid;
 }
 
 /**
@@ -236,6 +239,9 @@ bool dverify_benchmark(double *result, int n, int m, const char *dir, const char
 	double *check = malloc(sizeof(double) * n * m);
 	int read = fread(check, sizeof(double), n*m, fptr);
 
-	if(read != n * m) return false;
-	return (memcmp(result, check, n*m) == 0);
+	bool valid = (memcmp(result, check, n*m) == 0) && (read == n*m);
+	fclose(fptr);
+	free(check);
+
+	return valid;
 }
