@@ -64,14 +64,14 @@ void __init(){
 	 * The goal here is to benchmark the functions for varying sizes in memory. Ultimately
 	 * memory will end up becoming the benchmark for large vector / matrix operations.
 	 * Here is a reasonable guide to picking config sizes: 
-	 * + 1-3 options should fit easily in L1 cache
+	 * + 1-3 options should fit in L1-L2 cache
 	 * + 4-6 options should fit in L2-L3 cache
 	 * + 7-9 options should overflow cache and start occupying large amounts of system memory
 	 * 
 	 * Tip: For the double versions of benchmarks, simply half the memory usage of the float versions
 	 */
 	
-	config["sscal"] = 	{{{1, 1}, {1, 100}}, {{1, 1}, {1, 1000}}, {{1, 1}, {1, 10000}}, \
+	config["sscal"] = 	{{{1, 1}, {1, 10000}}, {{1, 1}, {1, 50000}}, {{1, 1}, {1, 100000}}, \
 						 {{1, 1}, {1, 500000}}, {{1, 1}, {1, 1000000}}, {{1, 1}, {1, 4000000}}, \
 						 {{1, 1}, {1, 12000000}}, {{1, 1}, {1, 100000000}}, {{1, 1}, {1, 200000000}}, \
 						 {{1, 1}, {1, 600000000}}};
