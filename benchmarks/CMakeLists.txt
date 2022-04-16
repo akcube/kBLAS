@@ -15,7 +15,7 @@ target_link_libraries(bench PRIVATE blis)
 find_package(OpenMP REQUIRED)
 find_package(Threads REQUIRED)
 target_link_libraries(bench PRIVATE gomp)
-target_link_libraries(bench PRIVATE pthread)
+target_link_libraries(bench PRIVATE m)
 
 # Links it with the benchmark library and kblas
 target_link_libraries(bench PRIVATE benchmark_lib)
