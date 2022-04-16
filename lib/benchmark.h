@@ -33,7 +33,10 @@ void compressed_pretty_print(long double duration, Result ret);
 long double tick_tock(struct timespec *tinfo);
 
 void benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel);
+
 void mem_flush(const void *p, unsigned int allocation_size);
+void fill_cache(const char *p, unsigned int allocation_size);
+
 
 char *get_filepath(const char *path, const char *fname);
 
@@ -74,9 +77,9 @@ double* get_darg(FILE *fptr, int *_n, int *_m);
 #define START_RECORD st = tick_tock(tinfo);
 
 #define END_RECORD en = tick_tock(tinfo); \
-            runtime += en - st; \
-        } while(runtime < min_duration);
 
-#define BENCH_END compressed_pretty_print(runtime, ret); }
+#define BENCH_END runtime += en - st; \
+        } while(runtime < min_duration); \
+        compressed_pretty_print(runtime, ret); }
 
 #endif

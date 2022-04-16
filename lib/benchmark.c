@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <benchmark.h>
+#include <immintrin.h>
 
 /**
  * Returns the current CPU clock time in seconds
@@ -134,6 +135,58 @@ void mem_flush(const void *p, unsigned int allocation_size){
     asm volatile("sfence\n\t" : : : "memory"); // Really cool instruction
 }
 
+static void escape(void *p){
+	asm volatile("" : : "g"(p) : "memory");
+}
+
+void fill_cache(const char *p, unsigned int allocation_size){
+	int leftover = allocation_size % 512;
+	for(int i=0; i < allocation_size-512; i+=512){
+		// 16x loop unrolling to help compiler register rename to all effective
+		// 16 SIMD registers.
+		__m256i r1 = _mm256_load_si256((__m256i*) &p[i]);
+		__m256i r2 = _mm256_load_si256((__m256i*) &p[i+32]);
+		__m256i r3 = _mm256_load_si256((__m256i*) &p[i+64]);
+		__m256i r4 = _mm256_load_si256((__m256i*) &p[i+96]);
+		__m256i r5 = _mm256_load_si256((__m256i*) &p[i+128]);
+		__m256i r6 = _mm256_load_si256((__m256i*) &p[i+160]);
+		__m256i r7 = _mm256_load_si256((__m256i*) &p[i+192]);
+		__m256i r8 = _mm256_load_si256((__m256i*) &p[i+224]);
+		__m256i r9 = _mm256_load_si256((__m256i*) &p[i+256]);
+		__m256i r10 = _mm256_load_si256((__m256i*) &p[i+288]);
+		__m256i r11 = _mm256_load_si256((__m256i*) &p[i+320]);
+		__m256i r12 = _mm256_load_si256((__m256i*) &p[i+352]);
+		__m256i r13 = _mm256_load_si256((__m256i*) &p[i+384]);
+		__m256i r14 = _mm256_load_si256((__m256i*) &p[i+416]);
+		__m256i r15 = _mm256_load_si256((__m256i*) &p[i+448]);
+		__m256i r16 = _mm256_load_si256((__m256i*) &p[i+480]);
+
+		// Escape DCE pass
+		escape(&r1);
+		escape(&r2);
+		escape(&r3);
+		escape(&r4);
+		escape(&r5);
+		escape(&r6);
+		escape(&r7);
+		escape(&r8);
+		escape(&r9);
+		escape(&r10);
+		escape(&r11);
+		escape(&r12);
+		escape(&r13);
+		escape(&r14);
+		escape(&r15);
+		escape(&r16);
+	}
+
+	// Cleanup
+	for(int i=allocation_size - leftover + 1; i < allocation_size; i++) {
+		char t = p[i];
+		escape(&t);
+	}
+}
+
 /**
  * Concatenate the directory path with filename to generate full 
  * path string.
@@ -165,7 +218,7 @@ float* get_farg(FILE *fptr, int *_n, int *_m){
 	if(!read) return NULL;
 
 	fread(&m, sizeof(int), 1, fptr);
-	float *data = malloc(sizeof(float) * n * m);
+	float *data = aligned_alloc(32, sizeof(float) * n * m);
 	fread(data, sizeof(float), n * m, fptr);
 	if(_n) *_n = n;
 	if(_m) *_m = m;
