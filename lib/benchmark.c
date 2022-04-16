@@ -35,6 +35,7 @@ void output_hwinfo(){
 	printf("Per-process CPU clock: \t\t%.9Lf sec\n", (long double) info->tv_sec + info->tv_nsec * 1e-9);
 	clock_getres(CLOCK_THREAD_CPUTIME_ID, info);
 	printf("Per-thread CPU clock: \t\t%.9Lf sec\n\n", (long double) info->tv_sec + info->tv_nsec * 1e-9);
+	free(info);
 }
 
 /**
@@ -95,6 +96,7 @@ void benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double d
 		for(int i=0; i<60; i++) printf("-");
 
 		pretty_print(en - st, ret);
+		free(tinfo);
 	}
 	// Multi-thread run
 	if(parallel)
@@ -119,6 +121,7 @@ void benchmark(Result (*kernel)(KernelArgs args), KernelArgs args, long double d
 		for(int i=0; i<60; i++) printf("-");
 
 		pretty_print(en - st, ret);
+		free(tinfo);
 	}
 }
 
@@ -262,13 +265,13 @@ double* get_darg(FILE *fptr, int *_n, int *_m){
 bool fverify_benchmark(float *result, int n, int m, const char *dir, const char *bench){
 	char *filepath = get_filepath(dir, bench);
 	FILE *fptr = fopen(filepath, "rb");
-	free(filepath);
 
 	float *check = malloc(sizeof(float) * n * m);
 	int read = fread(check, sizeof(float), n*m, fptr);
 
 	bool valid = (memcmp(result, check, n*m) == 0) && (read == n * m);
 	fclose(fptr);
+	free(filepath);
 	free(check);
 
 	return valid;
@@ -287,13 +290,13 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 bool dverify_benchmark(double *result, int n, int m, const char *dir, const char *bench){
 	char *filepath = get_filepath(dir, bench);
 	FILE *fptr = fopen(filepath, "rb");
-	free(filepath);
 
 	double *check = malloc(sizeof(double) * n * m);
 	int read = fread(check, sizeof(double), n*m, fptr);
 
 	bool valid = (memcmp(result, check, n*m) == 0) && (read == n*m);
 	fclose(fptr);
+	free(filepath);
 	free(check);
 
 	return valid;
