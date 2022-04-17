@@ -243,7 +243,7 @@ double* get_darg(FILE *fptr, int *_n, int *_m){
 	if(!read) return NULL;
 
 	fread(&m, sizeof(int), 1, fptr);
-	double *data = malloc(sizeof(double) * n * m);
+	double *data = aligned_alloc(32, sizeof(double) * n * m);
 	fread(data, sizeof(double), n * m, fptr);
 	if(_n) *_n = n;
 	if(_m) *_m = m;
