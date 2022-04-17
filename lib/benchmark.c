@@ -142,7 +142,7 @@ static void escape(void *p){
 	asm volatile("" : : "g"(p) : "memory");
 }
 
-void fill_cache(const char *p, unsigned int allocation_size){
+void fill_cache(const char *p, int allocation_size){
 	int leftover = allocation_size % 512;
 	for(int i=0; i < allocation_size-512; i+=512){
 		// 16x loop unrolling to help compiler register rename to all effective

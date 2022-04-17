@@ -35,7 +35,7 @@ long double tick_tock(struct timespec *tinfo);
 void benchmark(Result (*kernel_func)(KernelArgs args), KernelArgs args, long double duration, char *name, bool parallel);
 
 void mem_flush(const void *p, unsigned int allocation_size);
-void fill_cache(const char *p, unsigned int allocation_size);
+void fill_cache(const char *p, int allocation_size);
 
 
 char *get_filepath(const char *path, const char *fname);
