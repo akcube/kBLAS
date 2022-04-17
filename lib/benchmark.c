@@ -221,7 +221,7 @@ float* get_farg(FILE *fptr, int *_n, int *_m){
 	if(!read) return NULL;
 
 	fread(&m, sizeof(int), 1, fptr);
-	float *data = aligned_alloc(32, sizeof(float) * n * m);
+	float *data = aligned_alloc(64, sizeof(float) * n * m);
 	fread(data, sizeof(float), n * m, fptr);
 	if(_n) *_n = n;
 	if(_m) *_m = m;
@@ -243,7 +243,7 @@ double* get_darg(FILE *fptr, int *_n, int *_m){
 	if(!read) return NULL;
 
 	fread(&m, sizeof(int), 1, fptr);
-	double *data = aligned_alloc(32, sizeof(double) * n * m);
+	double *data = aligned_alloc(64, sizeof(double) * n * m);
 	fread(data, sizeof(double), n * m, fptr);
 	if(_n) *_n = n;
 	if(_m) *_m = m;
@@ -269,7 +269,7 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 	float *check = malloc(sizeof(float) * n * m);
 	int read = fread(check, sizeof(float), n*m, fptr);
 
-	bool valid = (memcmp(result, check, n*m) == 0) && (read == n * m);
+	bool valid = (memcmp(result, check, n * m * sizeof(float)) == 0) && (read == n * m);
 	fclose(fptr);
 	free(filepath);
 	free(check);
@@ -294,7 +294,7 @@ bool dverify_benchmark(double *result, int n, int m, const char *dir, const char
 	double *check = malloc(sizeof(double) * n * m);
 	int read = fread(check, sizeof(double), n*m, fptr);
 
-	bool valid = (memcmp(result, check, n*m) == 0) && (read == n*m);
+	bool valid = (memcmp(result, check, n * m * sizeof(float)) == 0) && (read == n*m);
 	fclose(fptr);
 	free(filepath);
 	free(check);
