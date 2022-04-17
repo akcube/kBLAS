@@ -22,10 +22,10 @@
 #define max(a, b) ((a > b) ? a : b)
 
 #define ARR_SIZE 80000000
-#define NUM_THREADS 2
+#define NUM_THREADS 4
 
 // Array to be read from. Aligned to 32-bit boundary to prevent GP when using avx instructions
-static int read_buf[ARR_SIZE] __attribute__ ((aligned (32)));
+static int read_buf[ARR_SIZE] __attribute__ ((aligned (64)));
 
 Result read_test(KernelArgs args);
 
@@ -66,7 +66,7 @@ omp_set_dynamic(0);
 #endif 
 
 // Set NUM_THREADS to number of available memory channels
-#pragma omp parallel for num_threads(NUM_THREADS)
+#pragma omp parallel for num_threads(NUM_THREADS) schedule(static, 256) proc_bind(spread)
 	for(int i=0; i < n-128; i+=128){
 		// 16x loop unrolling to help compiler register rename to all effective
 		// 16 SIMD registers.
@@ -107,7 +107,6 @@ omp_set_dynamic(0);
 	}
 
 	// Cleanup
-	#pragma omp parallel for num_threads(NUM_THREADS)
 	for(int i=max(0, n-128); i<n; i++) {
 		int t = read[i];
 		escape(&t);
