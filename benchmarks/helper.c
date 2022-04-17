@@ -25,7 +25,7 @@ int cmp_func(const void *a, const void *b){
  * data from src upto `bytes` number of bytes.
  */
 void *memdup(void *src, size_t bytes){
-	void *ret = aligned_alloc(32, bytes);
+	void *ret = aligned_alloc(64, bytes);
 	if(!ret) return ret;
 	memcpy(ret, src, bytes);
 	return ret;

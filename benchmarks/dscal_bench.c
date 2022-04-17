@@ -9,8 +9,8 @@
 #include "helper.h"
 #include <immintrin.h>
 
-const char *input_dir = "input/sscal/";
-const char *verif_dir = "verification/sscal/";
+const char *input_dir = "input/dscal/";
+const char *verif_dir = "verification/dscal/";
 
 static void escape(void *p){
 	asm volatile("" : : "g"(p) : "memory");
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 	arg_parse(argc, argv, &min_mem, &max_mem);
 
 	/**
-	 * SSCAL Benchmark
+	 * DSCAL Benchmark
 	 * Params:		N, Alpha, X*, INCX
 	 * Operation: 	X = \alpha * X
 	 */
@@ -37,53 +37,53 @@ int main(int argc, char *argv[]){
 		char namebuf[1024];
 
 		// Parse args
-		float *alpha = get_farg(file, NULL, NULL);
-		float *X = get_farg(file, NULL, &N);
-		float *xcpy = memdup(X, N * sizeof(float));
+		double *alpha = get_darg(file, NULL, NULL);
+		double *X = get_darg(file, NULL, &N);
+		double *xcpy = memdup(X, N * sizeof(double));
 
-		float memory = ((float) N*sizeof(float));
+		double memory = ((double) N*sizeof(double));
 		if(memory <= min_mem || memory >= max_mem) goto cleanup;
 		memory /= (1024 * 1024);
 
 		// Run CBLAS benchmark ----------------------------------------------------
 		{
-			sprintf(namebuf, "CBLAS: sscal 1 x %d, Memory: %f MB", N, memory);
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
-				memcpy(X, xcpy, N * sizeof(float));
-				fill_cache((const char*) X, N * sizeof(float));
+			sprintf(namebuf, "CBLAS: dscal 1 x %d, Memory: %f MB", N, memory);
+			BENCH_START(N, sizeof(double)*N, 1, namebuf)
+				memcpy(X, xcpy, N * sizeof(double));
+				fill_cache((const char*) X, N * sizeof(double));
 			 		START_RECORD
 			 			
-			 			cblas_sscal(N, *alpha, X, 1);
+			 			cblas_dscal(N, *alpha, X, 1);
 			 			
 			 		END_RECORD
 			BENCH_END
 		}
 		// Run KBLAS benchmark ----------------------------------------------------
 		{
-			sprintf(namebuf, "KBLAS: sscal 1 x %d, Memory: %f MB", N, memory);
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
-				memcpy(X, xcpy, N * sizeof(float));
-				fill_cache((const char*) X, N * sizeof(float));
+			sprintf(namebuf, "KBLAS: dscal 1 x %d, Memory: %f MB", N, memory);
+			BENCH_START(N, sizeof(double)*N, 1, namebuf)
+				memcpy(X, xcpy, N * sizeof(double));
+				fill_cache((const char*) X, N * sizeof(double));
 		 		START_RECORD
 		 			
-		 			kblas_sscal(N, *alpha, X, 1);
+		 			kblas_dscal(N, *alpha, X, 1);
 		 			
 		 		END_RECORD
 			BENCH_END
 			printf("Verified:\t\t\t");
-			if(fverify_benchmark(X, 1, N, verif_dir, names[i])) puts("Yes");
+			if(dverify_benchmark(X, 1, N, verif_dir, names[i])) puts("Yes");
 			else puts("No");
 		}
 		// Run BLIS  benchmark ----------------------------------------------------
 		{
 			obj_t X_b, alpha_b;
-			bli_obj_create_with_attached_buffer(BLIS_FLOAT, 1, N, X, N, 1, &X_b);
-			bli_obj_create_1x1(BLIS_FLOAT, &alpha_b);
+			bli_obj_create_with_attached_buffer(BLIS_DOUBLE, 1, N, X, N, 1, &X_b);
+			bli_obj_create_1x1(BLIS_DOUBLE, &alpha_b);
 			bli_setsc(*alpha, 0.0, &alpha_b);
-			sprintf(namebuf, "BLIS : sscal 1 x %d, Memory: %f MB", N, memory);
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
-				memcpy(X, xcpy, N * sizeof(float));
-				fill_cache((const char*) X, N * sizeof(float));
+			sprintf(namebuf, "BLIS : dscal 1 x %d, Memory: %f MB", N, memory);
+			BENCH_START(N, sizeof(double)*N, 1, namebuf)
+				memcpy(X, xcpy, N * sizeof(double));
+				fill_cache((const char*) X, N * sizeof(double));
 		 		START_RECORD
 		 			
 		 			bli_scalv(&alpha_b, &X_b);
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
 
 			bli_obj_free(&alpha_b);
 			printf("Verified:\t\t\t");
-			if(fverify_benchmark(X, 1, N, verif_dir, names[i])) puts("Yes");
+			if(dverify_benchmark(X, 1, N, verif_dir, names[i])) puts("Yes");
 			else puts("No");
 		}
 		// ------------------------------------------------------------------------
