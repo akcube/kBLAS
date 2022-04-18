@@ -71,13 +71,33 @@ void __init(){
 	 * Tip: For the double versions of benchmarks, simply half the memory usage of the float versions
 	 */
 	
-	config["sscal"] = 	{{{1, 1}, {1, 10000}}, {{1, 1}, {1, 50000}}, {{1, 1}, {1, 100000}}, \
-						 {{1, 1}, {1, 500000}}, {{1, 1}, {1, 1000000}}, {{1, 1}, {1, 4000000}}, \
-						 {{1, 1}, {1, 12000000}}, {{1, 1}, {1, 200000000}}, {{1, 1}, {1, 600000000}}};
-	
-	config["dscal"] = 	{{{1, 1}, {1, 5000}}, {{1, 1}, {1, 25000}}, {{1, 1}, {1, 50000}}, \
-						 {{1, 1}, {1, 250000}}, {{1, 1}, {1, 500000}}, {{1, 1}, {1, 2000000}}, \
-						 {{1, 1}, {1, 6000000}}, {{1, 1}, {1, 100000000}}, {{1, 1}, {1, 300000000}}};
+	config["sscal"] = 	{{{1, 1}, {1, 12800}}, {{1, 1}, {1, 25600}}, {{1, 1}, {1, 76800}}, \
+						 {{1, 1}, {1, 153600}}, {{1, 1}, {1, 307200}}, {{1, 1}, {1, 524288}}, \
+						 {{1, 1}, {1, 1310720}}, {{1, 1}, {1, 2097152}}, {{1, 1}, {1, 3145728}}, \
+						 {{1, 1}, {1, 4194304}}, {{1, 1}, {1, 5242880}}, {{1, 1}, {1, 8388608}}, \
+						 {{1, 1}, {1, 16777216}}, {{1, 1}, {1, 33554432}}, {{1, 1}, {1, 67108864}}, \
+						 {{1, 1}, {1, 134217728}}, {{1, 1}, {1, 268435456}}};
+
+	config["dscal"] = 	{{{1, 1}, {1, 6400}}, {{1, 1}, {1, 12800}}, {{1, 1}, {1, 38400}}, \
+						 {{1, 1}, {1, 76800}}, {{1, 1}, {1, 153600}}, {{1, 1}, {1, 262144}}, \
+						 {{1, 1}, {1, 655360}}, {{1, 1}, {1, 1048576}}, {{1, 1}, {1, 1572864}}, \
+						 {{1, 1}, {1, 2097152}}, {{1, 1}, {1, 2621440}}, {{1, 1}, {1, 4194304}}, \
+						 {{1, 1}, {1, 8388608}}, {{1, 1}, {1, 16777216}}, {{1, 1}, {1, 33554432}}, \
+						 {{1, 1}, {1, 67108864}}, {{1, 1}, {1, 134217728}}};
+
+	config["sdot"] = 	{{{1, 6400}, {1, 6400}}, {{1, 12800}, {1, 12800}}, {{1, 38400}, {1, 38400}}, \
+						 {{1, 76800}, {1, 76800}}, {{1, 153600}, {1, 153600}}, {{1, 262144}, {1, 262144}}, \
+						 {{1, 655360}, {1, 655360}}, {{1, 1048576}, {1, 1048576}}, {{1, 1572864}, {1, 1572864}}, \
+						 {{1, 2097152}, {1, 2097152}}, {{1, 2621440}, {1, 2621440}}, {{1, 4194304}, {1, 4194304}}, \
+						 {{1, 8388608}, {1, 8388608}}, {{1, 16777216}, {1, 16777216}}, {{1, 33554432}, {1, 33554432}}, \
+						 {{1, 67108864}, {1, 67108864}}, {{1, 134217728}, {1, 134217728}}};
+
+	config["ddot"] = 	{{{1, 3200}, {1, 3200}}, {{1, 6400}, {1, 6400}}, {{1, 19200}, {1, 19200}}, \
+						 {{1, 38400}, {1, 38400}}, {{1, 76800}, {1, 76800}}, {{1, 131072}, {1, 131072}}, \
+						 {{1, 327680}, {1, 327680}}, {{1, 524288}, {1, 524288}}, {{1, 786432}, {1, 786432}}, \
+						 {{1, 1048576}, {1, 1048576}}, {{1, 1310720}, {1, 1310720}}, {{1, 2097152}, {1, 2097152}}, \
+						 {{1, 4194304}, {1, 4194304}}, {{1, 8388608}, {1, 8388608}}, {{1, 16777216}, {1, 16777216}}, \
+						 {{1, 33554432}, {1, 33554432}}, {{1, 67108864}, {1, 67108864}}};
 }
 
 /**
@@ -103,7 +123,9 @@ std::vector<std::pair<T*, std::pair<int, int>>> parse_input(std::ifstream &fs){
 	int n, m;
 	std::vector<std::pair<T*, std::pair<int, int>>> ret;
 	while(!fs.eof()){
+		n = -1;
 		fs.read((char*) &n, sizeof(int));
+		if(n == -1) break;
 		fs.read((char*) &m, sizeof(int));
 		T *elem = (T*) malloc(sizeof(T)*n*m);
 		fs.read((char*) elem, sizeof(T)*n*m);
@@ -118,11 +140,12 @@ std::vector<std::pair<T*, std::pair<int, int>>> parse_input(std::ifstream &fs){
 template<typename T>
 void write_verification(std::fstream &fs, int N, int M, T *data){
 	fs.write((const char*) data, sizeof(T) * N * M);
-	free(data);
 }
 
 template<typename T>
 void _scal_verify(std::ifstream &ifs, std::fstream &ofs, void (*fun)(int, T, T*, int));
+template<typename T>
+void _dot_verify(std::ifstream &ifs, std::fstream &ofs, T (*dot)(int, const T*, int, const T*, int));
 
 #define INPUT_DIR "input/"
 #define VERIF_DIR "verification/"
@@ -150,6 +173,8 @@ int main(void){
 			std::fstream ofs(VERIF_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
 			if 		(benchmark == "sscal") _scal_verify(ifs, ofs, cblas_sscal);
 			else if (benchmark == "dscal") _scal_verify(ifs, ofs, cblas_dscal);
+			else if (benchmark == "sdot") _dot_verify(ifs, ofs, cblas_sdot);
+			else if (benchmark == "ddot") _dot_verify(ifs, ofs, cblas_ddot);
 		}
 	}
 }
@@ -162,4 +187,15 @@ void _scal_verify(std::ifstream &ifs, std::fstream &ofs, void (*scal)(int, T, T*
 	T *X = args[1].ff;
 	scal(N, alpha, X, 1);
 	write_verification<T>(ofs, 1, N, X);
+	for(auto &arg:args) free(arg.ff);
+}
+
+template<typename T>
+void _dot_verify(std::ifstream &ifs, std::fstream &ofs, T (*dot)(int, const T*, int, const T*, int)){
+	std::vector<std::pair<T*, std::pair<int, int>>> args = parse_input<T>(ifs);
+	int N = args[0].ss.ss;
+	T *X = args[0].ff, *Y = args[1].ff;
+	T result = dot(N, X, 1, Y, 1);
+	write_verification<T>(ofs, 1, 1, &result);
+	for(auto &arg:args) free(arg.ff);
 }

@@ -29,7 +29,11 @@ set(VERIF_DIR ${CMAKE_BINARY_DIR}/bin/benchmarks/verification)
 # Input file directories
 file(MAKE_DIRECTORY ${INPUT_DIR}/sscal)
 file(MAKE_DIRECTORY ${INPUT_DIR}/dscal)
+file(MAKE_DIRECTORY ${INPUT_DIR}/sdot)
+file(MAKE_DIRECTORY ${INPUT_DIR}/ddot)
 
 # Verification file directories
 file(MAKE_DIRECTORY ${VERIF_DIR}/sscal)
 file(MAKE_DIRECTORY ${VERIF_DIR}/dscal)
+file(MAKE_DIRECTORY ${VERIF_DIR}/sdot)
+file(MAKE_DIRECTORY ${VERIF_DIR}/ddot)

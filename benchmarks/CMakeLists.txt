@@ -11,7 +11,9 @@ target_link_libraries(allbenchlib INTERFACE blis gomp m benchmark_lib kblas)
 
 set(BENCH_EXECUTABLES 
 	sscal_bench
-	dscal_bench)
+	dscal_bench
+	sdot_bench
+	ddot_bench)
 
 # Create the targets
 foreach(exec ${BENCH_EXECUTABLES})
