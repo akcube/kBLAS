@@ -53,50 +53,27 @@
  */
 // inline __attribute__((always_inline)) 
 float kblas_sdot_inc1(const int N, const float *X, const float *Y){
-
-	// Switch to multi-thread only if vector won't fit in even one-fourth of L2
 	long long mem = (N * sizeof(float));
 	float result = 0;
-
-	if(mem >= 2*L2_SIZE && mem <= L3C_SIZE){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
-		{
-			VECTOR_DECL
-			#pragma omp for schedule(static, 128) nowait
-			for(int i=0; i<N-48+1; i+=48)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else if(mem > L3C_SIZE && mem < BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
-		{
-			VECTOR_DECL
-			#pragma omp for nowait
-			for(int i=0; i<N-48+1; i+=48)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else if(mem >= BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(2) proc_bind(spread)
-		{
-			VECTOR_DECL
-			#pragma omp for nowait
-			for(int i=0; i<N-48+1; i+=48)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else {
+	// Always multi-thread except when in L1D
+	if(mem <= 2*L1D_SIZE){
 		VECTOR_DECL
+		#pragma omp for
 		for(int i=0; i<N-48+1; i+=48)
-			UNROLLED_VECT_COMP	
+			UNROLLED_VECT_COMP
 		ACCUM_COMP
 		result += accumulator;
+	}
+	else {
+		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
+		{
+			VECTOR_DECL
+			#pragma omp for
+			for(int i=0; i<N-48+1; i+=48)
+				UNROLLED_VECT_COMP
+			ACCUM_COMP
+			result += accumulator;
+		}
 	}
 
 	for(int i = ((N-(N % 48)) > 0 ? N-(N % 48) : 0); i<N; i++)

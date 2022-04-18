@@ -13,7 +13,9 @@ set(BENCH_EXECUTABLES
 	sscal_bench
 	dscal_bench
 	sdot_bench
-	ddot_bench)
+	ddot_bench
+	saxpy_bench
+	daxpy_bench)
 
 # Create the targets
 foreach(exec ${BENCH_EXECUTABLES})

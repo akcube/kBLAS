@@ -57,45 +57,25 @@ double kblas_ddot_inc1(const int N, const double *X, const double *Y){
 	long long mem = (N * sizeof(double));
 	double result = 0;
 
-	if(mem >= 2*L2_SIZE && mem <= L3C_SIZE){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
-		{
-			VECTOR_DECL
-			#pragma omp for schedule(static, 128)
-			for(int i=0; i<N-24+1; i+=24)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else if(mem > L3C_SIZE && mem < BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
-		{
-			VECTOR_DECL
-			#pragma omp for
-			for(int i=0; i<N-24+1; i+=24)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else if(mem >= BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(2) proc_bind(spread) 
-		{
-			VECTOR_DECL
-			#pragma omp for
-			for(int i=0; i<N-24+1; i+=24)
-				UNROLLED_VECT_COMP
-			ACCUM_COMP
-			result += accumulator;
-		}
-	}
-	else {
+	// Always multi-thread except when in L1D
+	if(mem <= 2*L1D_SIZE){
 		VECTOR_DECL
+		#pragma omp for
 		for(int i=0; i<N-24+1; i+=24)
-			UNROLLED_VECT_COMP	
+			UNROLLED_VECT_COMP
 		ACCUM_COMP
 		result += accumulator;
+	}
+	else {
+		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
+		{
+			VECTOR_DECL
+			#pragma omp for
+			for(int i=0; i<N-24+1; i+=24)
+				UNROLLED_VECT_COMP
+			ACCUM_COMP
+			result += accumulator;
+		}
 	}
 
 	for(int i = ((N-(N % 24)) > 0 ? N-(N % 24) : 0); i<N; i++)
