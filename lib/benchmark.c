@@ -271,9 +271,10 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 	int read = fread(check, sizeof(float), n*m, fptr);
 
 	bool valid = (read == n * m);
-	float eps = 1e-3;
+	float eps = 1.0;
 	for(int i=0; i<n*m; i++)
 		valid &= (fabsf(check[i] - result[i]) < eps);
+
 	fclose(fptr);
 	free(filepath);
 	free(check);
@@ -299,7 +300,7 @@ bool dverify_benchmark(double *result, int n, int m, const char *dir, const char
 	int read = fread(check, sizeof(double), n*m, fptr);
 
 	bool valid = (read == n * m);
-	double eps = 1e-4;
+	double eps = 1.0;
 	for(int i=0; i<n*m; i++)
 		valid &= (fabs(check[i] - result[i]) < eps);
 	fclose(fptr);

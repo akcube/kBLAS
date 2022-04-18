@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
 		{
 			sprintf(namebuf, "CBLAS: sdot 1 x %d, Memory: %f MB", N, memory);
 			dotres = -1;
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
+			BENCH_START(2*N, 2*sizeof(float)*N, 1, namebuf)
 			 		START_RECORD
 			 			
 			 			dotres = cblas_sdot(N, X, 1, Y, 1);
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]){
 		{
 			sprintf(namebuf, "KBLAS: sdot 1 x %d, Memory: %f MB", N, memory);
 			dotres = -1;
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
+			BENCH_START(2*N, 2*sizeof(float)*N, 1, namebuf)
 		 		START_RECORD
 		 			
 			 			dotres = kblas_sdot(N, X, 1, Y, 1);
@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
 			bli_obj_create_with_attached_buffer(BLIS_FLOAT, 1, N, X, N, 1, &X_b);
 			bli_obj_create_with_attached_buffer(BLIS_FLOAT, 1, N, Y, N, 1, &Y_b);
 			sprintf(namebuf, "BLIS : sdot 1 x %d, Memory: %f MB", N, memory);
-			BENCH_START(N, sizeof(float)*N, 1, namebuf)
+			BENCH_START(2*N, 2*sizeof(float)*N, 1, namebuf)
 		 		START_RECORD
 		 			
 		 			bli_dotv(&X_b, &Y_b, &rho_b);
