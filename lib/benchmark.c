@@ -6,6 +6,7 @@
 #include <string.h>
 #include <benchmark.h>
 #include <immintrin.h>
+#include <math.h>
 
 /**
  * Returns the current CPU clock time in seconds
@@ -266,10 +267,15 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 	char *filepath = get_filepath(dir, bench);
 	FILE *fptr = fopen(filepath, "rb");
 
+	printf("%s\n", filepath);
+
 	float *check = malloc(sizeof(float) * n * m);
 	int read = fread(check, sizeof(float), n*m, fptr);
 
-	bool valid = (memcmp(result, check, n * m * sizeof(float)) == 0) && (read == n * m);
+	bool valid = (read == n * m);
+	float eps = 1e-3;
+	for(int i=0; i<n*m; i++)
+		valid &= (fabsf(check[i] - result[i]) < eps);
 	fclose(fptr);
 	free(filepath);
 	free(check);
@@ -294,7 +300,10 @@ bool dverify_benchmark(double *result, int n, int m, const char *dir, const char
 	double *check = malloc(sizeof(double) * n * m);
 	int read = fread(check, sizeof(double), n*m, fptr);
 
-	bool valid = (memcmp(result, check, n * m * sizeof(float)) == 0) && (read == n*m);
+	bool valid = (read == n * m);
+	double eps = 1e-4;
+	for(int i=0; i<n*m; i++)
+		valid &= (fabs(check[i] - result[i]) < eps);
 	fclose(fptr);
 	free(filepath);
 	free(check);
