@@ -267,8 +267,6 @@ bool fverify_benchmark(float *result, int n, int m, const char *dir, const char 
 	char *filepath = get_filepath(dir, bench);
 	FILE *fptr = fopen(filepath, "rb");
 
-	printf("%s\n", filepath);
-
 	float *check = malloc(sizeof(float) * n * m);
 	int read = fread(check, sizeof(float), n*m, fptr);
 
