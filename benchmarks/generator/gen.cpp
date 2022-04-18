@@ -29,7 +29,7 @@ std::mt19937 gen; // Standard mersenne_twister_engine which we will seed with rd
  * numbers between.
  */
 template<typename T>
-T* create_rand_matrix(int M, int N, T l = 0.0, T r = 1e6){
+T* create_rand_matrix(int M, int N, T l = -1.0, T r = 1.0){
     std::uniform_real_distribution<T> dis(l, r);
 	T *mat = (T*) malloc(sizeof(T) * M * N);
 	for(int i=0; i<(M*N); i++) mat[i] = dis(gen);
@@ -41,7 +41,7 @@ T* create_rand_matrix(int M, int N, T l = 0.0, T r = 1e6){
  * specify a range to generate random numbers between.
  */
 template<typename T>
-T get_rand_num(T l = 0.0, T r = 1e6){
+T get_rand_num(T l = -1.0, T r = 1.0){
     std::uniform_real_distribution<T> dis(l, r);
     return dis(gen);
 }
@@ -98,13 +98,27 @@ void __init(){
 						 {{1, 1048576}, {1, 1048576}}, {{1, 1310720}, {1, 1310720}}, {{1, 2097152}, {1, 2097152}}, \
 						 {{1, 4194304}, {1, 4194304}}, {{1, 8388608}, {1, 8388608}}, {{1, 16777216}, {1, 16777216}}, \
 						 {{1, 33554432}, {1, 33554432}}, {{1, 67108864}, {1, 67108864}}};
+
+	config["saxpy"] = 	{{{1, 1}, {1, 6400}, {1, 6400}}, {{1, 1}, {1, 12800}, {1, 12800}}, {{1, 1}, {1, 38400}, {1, 38400}}, \
+						 {{1, 1}, {1, 76800}, {1, 76800}}, {{1, 1}, {1, 153600}, {1, 153600}}, {{1, 1}, {1, 262144}, {1, 262144}}, \
+						 {{1, 1}, {1, 655360}, {1, 655360}}, {{1, 1}, {1, 1048576}, {1, 1048576}}, {{1, 1}, {1, 1572864}, {1, 1572864}}, \
+						 {{1, 1}, {1, 2097152}, {1, 2097152}}, {{1, 1}, {1, 2621440}, {1, 2621440}}, {{1, 1}, {1, 4194304}, {1, 4194304}}, \
+						 {{1, 1}, {1, 8388608}, {1, 8388608}}, {{1, 1}, {1, 16777216}, {1, 16777216}}, {{1, 1}, {1, 33554432}, {1, 33554432}}, \
+						 {{1, 1}, {1, 67108864}, {1, 67108864}}, {{1, 1}, {1, 134217728}, {1, 134217728}}};
+
+	config["daxpy"] = 	{{{1, 1}, {1, 3200}, {1, 3200}}, {{1, 1}, {1, 6400}, {1, 6400}}, {{1, 1}, {1, 19200}, {1, 19200}}, \
+						 {{1, 1}, {1, 38400}, {1, 38400}}, {{1, 1}, {1, 76800}, {1, 76800}}, {{1, 1}, {1, 131072}, {1, 131072}}, \
+						 {{1, 1}, {1, 327680}, {1, 327680}}, {{1, 1}, {1, 524288}, {1, 524288}}, {{1, 1}, {1, 786432}, {1, 786432}}, \
+						 {{1, 1}, {1, 1048576}, {1, 1048576}}, {{1, 1}, {1, 1310720}, {1, 1310720}}, {{1, 1}, {1, 2097152}, {1, 2097152}}, \
+						 {{1, 1}, {1, 4194304}, {1, 4194304}}, {{1, 1}, {1, 8388608}, {1, 8388608}}, {{1, 1}, {1, 16777216}, {1, 16777216}}, \
+						 {{1, 1}, {1, 33554432}, {1, 33554432}}, {{1, 1}, {1, 67108864}, {1, 67108864}}};
 }
 
 /**
  * Given the config, creates the requested spec and then writes it to the fs filestream
  */
 template<typename T>
-void write_config(vii &conf, std::fstream &fs, T l=0.0, T r=1e6){
+void write_config(vii &conf, std::fstream &fs, T l=-1.0, T r=1.0){
 	for(auto [n, m]:conf){
 		fs.write((const char*) &n, sizeof(int));
 		fs.write((const char*) &m, sizeof(int));
@@ -146,6 +160,8 @@ template<typename T>
 void _scal_verify(std::ifstream &ifs, std::fstream &ofs, void (*fun)(int, T, T*, int));
 template<typename T>
 void _dot_verify(std::ifstream &ifs, std::fstream &ofs, T (*dot)(int, const T*, int, const T*, int));
+template<typename T>
+void _axpy_verify(std::ifstream &ifs, std::fstream &ofs, void (*dot)(const int, const T, const T*, const int, T*, const int));
 
 #define INPUT_DIR "input/"
 #define VERIF_DIR "verification/"
@@ -159,9 +175,7 @@ int main(void){
 		for(int i=0; i<num_confs; i++){
 			std::cout<<"["<<i+1<<"/"<<num_confs<<"]\tGenerating input files for "<<benchmark<<"\n";
 			std::fstream fs(INPUT_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
-			if(benchmark == "sdot") write_config<float>(confs[i], fs, -1, 1);
-			else if(benchmark == "ddot") write_config<double>(confs[i], fs, -1, 1);
-			else if(benchmark[0] == 's') write_config<float>(confs[i], fs);
+			if(benchmark[0] == 's') write_config<float>(confs[i], fs);
 			else if(benchmark[0] == 'd') write_config<double>(confs[i], fs);
 		}
 	}
@@ -177,6 +191,8 @@ int main(void){
 			else if (benchmark == "dscal") _scal_verify(ifs, ofs, cblas_dscal);
 			else if (benchmark == "sdot") _dot_verify(ifs, ofs, cblas_sdot);
 			else if (benchmark == "ddot") _dot_verify(ifs, ofs, cblas_ddot);
+			else if (benchmark == "saxpy") _axpy_verify<float>(ifs, ofs, cblas_saxpy);
+			else if (benchmark == "daxpy") _axpy_verify<double>(ifs, ofs, cblas_daxpy);
 		}
 	}
 }
@@ -199,5 +215,16 @@ void _dot_verify(std::ifstream &ifs, std::fstream &ofs, T (*dot)(int, const T*, 
 	T *X = args[0].ff, *Y = args[1].ff;
 	T result = dot(N, X, 1, Y, 1);
 	write_verification<T>(ofs, 1, 1, &result);
+	for(auto &arg:args) free(arg.ff);
+}
+
+template<typename T>
+void _axpy_verify(std::ifstream &ifs, std::fstream &ofs, void (*axpy)(const int, const T, const T*, const int, T*, const int)){
+	std::vector<std::pair<T*, std::pair<int, int>>> args = parse_input<T>(ifs);
+	T alpha = *(args[0].ff);
+	int N = args[1].ss.ss;
+	T *X = args[1].ff, *Y = args[2].ff;
+	axpy(N, alpha, X, 1, Y, 1);
+	write_verification<T>(ofs, 1, N, Y);
 	for(auto &arg:args) free(arg.ff);
 }

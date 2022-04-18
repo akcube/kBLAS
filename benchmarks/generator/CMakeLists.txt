@@ -9,7 +9,7 @@ project(
 add_executable(gen gen.cpp)
 
 # Compiles with optimization flags
-target_compile_options(gen PRIVATE -O3)
+target_compile_options(gen PRIVATE -O0 -g)
 
 # Link it with BLIS
 target_link_libraries(gen PRIVATE blis)
@@ -31,9 +31,11 @@ file(MAKE_DIRECTORY ${INPUT_DIR}/sscal)
 file(MAKE_DIRECTORY ${INPUT_DIR}/dscal)
 file(MAKE_DIRECTORY ${INPUT_DIR}/sdot)
 file(MAKE_DIRECTORY ${INPUT_DIR}/ddot)
+file(MAKE_DIRECTORY ${INPUT_DIR}/saxpy)
+file(MAKE_DIRECTORY ${INPUT_DIR}/daxpy)
 
 # Verification file directories
 file(MAKE_DIRECTORY ${VERIF_DIR}/sscal)
 file(MAKE_DIRECTORY ${VERIF_DIR}/dscal)
-file(MAKE_DIRECTORY ${VERIF_DIR}/sdot)
-file(MAKE_DIRECTORY ${VERIF_DIR}/ddot)
+file(MAKE_DIRECTORY ${VERIF_DIR}/saxpy)
+file(MAKE_DIRECTORY ${VERIF_DIR}/daxpy)
