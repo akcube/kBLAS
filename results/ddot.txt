@@ -1,0 +1,290 @@
+min: 0, max: 9223372036854775807
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				15.031229
+Bandwidth:			120.249831 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				15.198718
+Bandwidth:			121.589746 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				13.334901
+Bandwidth:			106.679208 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				15.562748
+Bandwidth:			124.501985 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				16.271190
+Bandwidth:			130.169520 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				15.004114
+Bandwidth:			120.032916 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				16.581085
+Bandwidth:			132.648681 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				27.362701
+Bandwidth:			218.901610 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				15.668086
+Bandwidth:			125.344689 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				14.030838
+Bandwidth:			112.246702 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				38.056591
+Bandwidth:			304.452727 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				13.818492
+Bandwidth:			110.547935 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				11.875085
+Bandwidth:			95.000677 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				44.612284
+Bandwidth:			356.898275 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				13.589059
+Bandwidth:			108.712471 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				12.090889
+Bandwidth:			96.727115 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				39.042470
+Bandwidth:			312.339757 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				11.321296
+Bandwidth:			90.570364 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				11.572570
+Bandwidth:			92.580561 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				35.325077
+Bandwidth:			282.600617 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				11.251524
+Bandwidth:			90.012190 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				10.924715
+Bandwidth:			87.397723 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				26.070966
+Bandwidth:			208.567727 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				10.746462
+Bandwidth:			85.971695 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				8.313224
+Bandwidth:			66.505795 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				26.358930
+Bandwidth:			210.871436 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				7.801393
+Bandwidth:			62.411144 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				7.658106
+Bandwidth:			61.264845 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				21.231333
+Bandwidth:			169.850667 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				7.526482
+Bandwidth:			60.211854 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				7.406592
+Bandwidth:			59.252734 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				15.286703
+Bandwidth:			122.293624 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				6.801214
+Bandwidth:			54.409710 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				5.923582
+Bandwidth:			47.388653 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				8.102692
+Bandwidth:			64.821538 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				5.937676
+Bandwidth:			47.501405 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				4.445788
+Bandwidth:			35.566307 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				6.006090
+Bandwidth:			48.048719 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				4.535398
+Bandwidth:			36.283181 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				4.607999
+Bandwidth:			36.863991 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				4.954481
+Bandwidth:			39.635845 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				4.428627
+Bandwidth:			35.429019 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				4.131111
+Bandwidth:			33.048890 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				5.061606
+Bandwidth:			40.492845 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				4.142008
+Bandwidth:			33.136066 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				4.000584
+Bandwidth:			32.004669 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				5.112232
+Bandwidth:			40.897857 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				4.010511
+Bandwidth:			32.084086 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: ddot 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				4.185796
+Bandwidth:			33.486364 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: ddot 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				5.021764
+Bandwidth:			40.174111 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : ddot 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				4.175147
+Bandwidth:			33.401177 GB/s
+Verified:			Yes

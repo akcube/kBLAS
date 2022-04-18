@@ -1,0 +1,290 @@
+min: 0, max: 9223372036854775807
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				14.471433
+Bandwidth:			115.771465 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				17.476114
+Bandwidth:			139.808910 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 3200, Memory: 0.048828 MB
+
+GFLOPS:				19.316920
+Bandwidth:			154.535359 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				15.227453
+Bandwidth:			121.819626 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				15.880999
+Bandwidth:			127.047993 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 6400, Memory: 0.097656 MB
+
+GFLOPS:				22.695419
+Bandwidth:			181.563354 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				15.741292
+Bandwidth:			125.930332 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				16.392555
+Bandwidth:			131.140436 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 19200, Memory: 0.292969 MB
+
+GFLOPS:				23.493060
+Bandwidth:			187.944479 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				13.315361
+Bandwidth:			106.522885 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				12.894136
+Bandwidth:			103.153089 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 38400, Memory: 0.585938 MB
+
+GFLOPS:				17.698975
+Bandwidth:			141.591802 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				11.587340
+Bandwidth:			92.698722 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				11.938824
+Bandwidth:			95.510595 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 76800, Memory: 1.171875 MB
+
+GFLOPS:				18.481671
+Bandwidth:			147.853370 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				11.929061
+Bandwidth:			95.432490 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				24.839563
+Bandwidth:			198.716506 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 131072, Memory: 2.000000 MB
+
+GFLOPS:				18.384862
+Bandwidth:			147.078900 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				11.415580
+Bandwidth:			91.324640 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				26.935547
+Bandwidth:			215.484378 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 327680, Memory: 5.000000 MB
+
+GFLOPS:				18.621239
+Bandwidth:			148.969911 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				10.395280
+Bandwidth:			83.162239 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				23.705809
+Bandwidth:			189.646475 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 524288, Memory: 8.000000 MB
+
+GFLOPS:				18.951907
+Bandwidth:			151.615254 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				7.713297
+Bandwidth:			61.706376 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				16.047798
+Bandwidth:			128.382386 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 786432, Memory: 12.000000 MB
+
+GFLOPS:				15.807115
+Bandwidth:			126.456923 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				3.742777
+Bandwidth:			29.942213 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				6.413083
+Bandwidth:			51.304665 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 1048576, Memory: 16.000000 MB
+
+GFLOPS:				11.621492
+Bandwidth:			92.971934 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				3.514929
+Bandwidth:			28.119430 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				4.697963
+Bandwidth:			37.583707 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 1310720, Memory: 20.000000 MB
+
+GFLOPS:				8.462904
+Bandwidth:			67.703235 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				3.131621
+Bandwidth:			25.052965 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				3.370686
+Bandwidth:			26.965487 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 2097152, Memory: 32.000000 MB
+
+GFLOPS:				5.268781
+Bandwidth:			42.150251 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				2.780095
+Bandwidth:			22.240756 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				1.501909
+Bandwidth:			12.015270 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 4194304, Memory: 64.000000 MB
+
+GFLOPS:				3.959874
+Bandwidth:			31.678995 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				2.443104
+Bandwidth:			19.544834 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				1.482928
+Bandwidth:			11.863422 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 8388608, Memory: 128.000000 MB
+
+GFLOPS:				3.833372
+Bandwidth:			30.666979 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				2.481177
+Bandwidth:			19.849413 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				1.559359
+Bandwidth:			12.474872 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 16777216, Memory: 256.000000 MB
+
+GFLOPS:				3.831230
+Bandwidth:			30.649843 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				2.509901
+Bandwidth:			20.079212 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				1.554768
+Bandwidth:			12.438142 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 33554432, Memory: 512.000000 MB
+
+GFLOPS:				3.677721
+Bandwidth:			29.421765 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - CBLAS: daxpy 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				2.599756
+Bandwidth:			20.798049 GB/s
+------------------------------------------------------------
+Benchmark - KBLAS: daxpy 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				1.543040
+Bandwidth:			12.344322 GB/s
+Verified:			Yes
+------------------------------------------------------------
+Benchmark - BLIS : daxpy 1 x 67108864, Memory: 1024.000000 MB
+
+GFLOPS:				3.725772
+Bandwidth:			29.806172 GB/s
+Verified:			Yes
