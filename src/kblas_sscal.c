@@ -85,22 +85,22 @@ void kblas_sscal_inc1(const int N, const float alpha, float *X){
 	register __m256 sr3 = _mm256_broadcast_ss(&alpha);
 	register __m256 sr4 = _mm256_broadcast_ss(&alpha);
 
-	if(mem >= L2_SIZE * 2 && mem <= L3C_SIZE){
+	if(mem >= 2*L2_SIZE && mem <= L3C_SIZE){
 		#pragma omp parallel for num_threads(4) proc_bind(spread) schedule(static, 128)
 		for(int i=0; i<N-96+1; i+=96){
 			UNROLLED_VECT_READ_MULT
 			UNROLLED_VECT_STORE
 		}
 	}
-	else if(mem > L3C_SIZE && mem <= BIG_MEM){
+	else if(mem > L3C_SIZE && mem < BIG_MEM){
 		#pragma omp parallel for num_threads(4) proc_bind(spread)
 		for(int i=0; i<N-96+1; i+=96){
 			UNROLLED_VECT_READ_MULT
 			UNROLLED_VECT_STORE
 		}
 	}
-	else if(mem > BIG_MEM){
-		#pragma omp parallel for num_threads(4) proc_bind(spread)
+	else if(mem >= BIG_MEM){
+		#pragma omp parallel for num_threads(2) proc_bind(spread)
 		for(int i=0; i<N-96+1; i+=96){
 			UNROLLED_VECT_READ_MULT	
 			UNROLLED_VECT_STREAM

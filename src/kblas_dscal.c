@@ -92,15 +92,15 @@ void kblas_dscal_inc1(const int N, const double alpha, double *X){
 			UNROLLED_VECT_STORE
 		}
 	}
-	else if(mem > L3C_SIZE && mem <= BIG_MEM){
+	else if(mem > L3C_SIZE && mem < BIG_MEM){
 		#pragma omp parallel for num_threads(4) proc_bind(spread)
 		for(int i=0; i<N-48+1; i+=48){
 			UNROLLED_VECT_READ_MULT
 			UNROLLED_VECT_STORE
 		}
 	}
-	else if(mem > BIG_MEM){
-		#pragma omp parallel for num_threads(4) proc_bind(spread)
+	else if(mem >= BIG_MEM){
+		#pragma omp parallel for num_threads(2) proc_bind(spread)
 		for(int i=0; i<N-48+1; i+=48){
 			UNROLLED_VECT_READ_MULT	
 			UNROLLED_VECT_STREAM

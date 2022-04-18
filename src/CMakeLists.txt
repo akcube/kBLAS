@@ -5,4 +5,4 @@ add_library(kblas kblas_dscal.c kblas_sscal.c)
 target_include_directories(kblas PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 # Compiles with optimization flags
-target_compile_options(kblas PRIVATE -O3 -mavx2 -fopenmp -march=znver3)
+target_compile_options(kblas PRIVATE -O3 -ffast-math -mavx2 -fopenmp -march=znver3)
