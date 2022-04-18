@@ -104,11 +104,11 @@ void __init(){
  * Given the config, creates the requested spec and then writes it to the fs filestream
  */
 template<typename T>
-void write_config(vii &conf, std::fstream &fs){
+void write_config(vii &conf, std::fstream &fs, T l=0.0, T r=1e6){
 	for(auto [n, m]:conf){
 		fs.write((const char*) &n, sizeof(int));
 		fs.write((const char*) &m, sizeof(int));
-		T *elem = (T*) create_rand_matrix<T>(n, m);
+		T *elem = (T*) create_rand_matrix<T>(n, m, l, r);
 		fs.write((const char*) elem, sizeof(T)*n*m);
 		free(elem);
 	}
@@ -159,7 +159,9 @@ int main(void){
 		for(int i=0; i<num_confs; i++){
 			std::cout<<"["<<i+1<<"/"<<num_confs<<"]\tGenerating input files for "<<benchmark<<"\n";
 			std::fstream fs(INPUT_DIR + benchmark + "/" + std::to_string(i+1),  std::ios::out | std::ios::binary);
-			if(benchmark[0] == 's') write_config<float>(confs[i], fs);
+			if(benchmark == "sdot") write_config<float>(confs[i], fs, -1, 1);
+			else if(benchmark == "ddot") write_config<double>(confs[i], fs, -1, 1);
+			else if(benchmark[0] == 's') write_config<float>(confs[i], fs);
 			else if(benchmark[0] == 'd') write_config<double>(confs[i], fs);
 		}
 	}
