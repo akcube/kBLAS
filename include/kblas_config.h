@@ -9,6 +9,6 @@
 #define L2_SIZE KB(512)
 #define L3_SIZE MB(16)
 #define L3C_SIZE L3_SIZE/NUM_CORES
-#define BIG_MEM MB(512)
+#define BIG_MEM MB(24)
 
 #endif

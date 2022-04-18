@@ -132,16 +132,25 @@ void kblas_dscal(const int N, const double alpha, double *X, const int incX){
 	int nmax = N * incX;
 
 	// Switch to multi-thread only if vector won't fit in even one-fourth of L2
-	long long mem_mb = (N * sizeof(double));
-	bool multi_thread = (mem_mb >= L2_SIZE/4);
+	long long mem = (N * sizeof(double));
 
 	// TODO: Experiment with masked SIMD operations for stride 2, 4
-	if(multi_thread){
+	if(mem >= L2_SIZE * 2 && mem <= L3C_SIZE){
+		#pragma omp parallel for num_threads(4) proc_bind(spread) schedule(static, 128)
+		for (int i = 0; i < nmax; i+=incX) 
+			X[i] *= alpha;
+	}
+	else if(mem > L3C_SIZE && mem < BIG_MEM){
 		#pragma omp parallel for num_threads(4) proc_bind(spread)
 		for (int i = 0; i < nmax; i+=incX) 
 			X[i] *= alpha;
 	}
-	else{
+	else if(mem >= BIG_MEM){
+		#pragma omp parallel for num_threads(2) proc_bind(spread)
+		for (int i = 0; i < nmax; i+=incX) 
+			X[i] *= alpha;
+	}
+	else {
 		for (int i = 0; i < nmax; i+=incX) 
 			X[i] *= alpha;
 	}
