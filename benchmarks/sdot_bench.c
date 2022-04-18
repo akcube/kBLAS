@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 		float *X = get_farg(file, NULL, &N);
 		float *Y = get_farg(file, NULL, NULL);
 
-		float memory = ((float) N*sizeof(float));
+		float memory = ((float) 2*N*sizeof(float));
 		if(memory <= min_mem || memory >= max_mem) goto cleanup;
 		memory /= (1024 * 1024);
 

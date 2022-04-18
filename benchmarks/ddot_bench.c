@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 		double *X = get_darg(file, NULL, &N);
 		double *Y = get_darg(file, NULL, NULL);
 
-		double memory = ((double) N*sizeof(double));
+		double memory = ((double) 2*N*sizeof(double));
 		if(memory <= min_mem || memory >= max_mem) goto cleanup;
 		memory /= (1024 * 1024);
 
