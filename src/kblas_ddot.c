@@ -58,10 +58,10 @@ double kblas_ddot_inc1(const int N, const double *X, const double *Y){
 	double result = 0;
 
 	if(mem >= 2*L2_SIZE && mem <= L3C_SIZE){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
+		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
 		{
 			VECTOR_DECL
-			#pragma omp for schedule(static, 128) 
+			#pragma omp for schedule(static, 128)
 			for(int i=0; i<N-24+1; i+=24)
 				UNROLLED_VECT_COMP
 			ACCUM_COMP
@@ -69,7 +69,7 @@ double kblas_ddot_inc1(const int N, const double *X, const double *Y){
 		}
 	}
 	else if(mem > L3C_SIZE && mem < BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
+		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread) 
 		{
 			VECTOR_DECL
 			#pragma omp for
@@ -80,7 +80,7 @@ double kblas_ddot_inc1(const int N, const double *X, const double *Y){
 		}
 	}
 	else if(mem >= BIG_MEM){
-		#pragma omp parallel reduction(+:result) num_threads(2) proc_bind(spread)
+		#pragma omp parallel reduction(+:result) num_threads(2) proc_bind(spread) 
 		{
 			VECTOR_DECL
 			#pragma omp for

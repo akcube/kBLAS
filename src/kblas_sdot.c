@@ -62,7 +62,7 @@ float kblas_sdot_inc1(const int N, const float *X, const float *Y){
 		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
 		{
 			VECTOR_DECL
-			#pragma omp for schedule(static, 128) 
+			#pragma omp for schedule(static, 128) nowait
 			for(int i=0; i<N-48+1; i+=48)
 				UNROLLED_VECT_COMP
 			ACCUM_COMP
@@ -73,7 +73,7 @@ float kblas_sdot_inc1(const int N, const float *X, const float *Y){
 		#pragma omp parallel reduction(+:result) num_threads(4) proc_bind(spread)
 		{
 			VECTOR_DECL
-			#pragma omp for
+			#pragma omp for nowait
 			for(int i=0; i<N-48+1; i+=48)
 				UNROLLED_VECT_COMP
 			ACCUM_COMP
@@ -84,7 +84,7 @@ float kblas_sdot_inc1(const int N, const float *X, const float *Y){
 		#pragma omp parallel reduction(+:result) num_threads(2) proc_bind(spread)
 		{
 			VECTOR_DECL
-			#pragma omp for
+			#pragma omp for nowait
 			for(int i=0; i<N-48+1; i+=48)
 				UNROLLED_VECT_COMP
 			ACCUM_COMP
