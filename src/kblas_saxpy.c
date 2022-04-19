@@ -69,23 +69,23 @@ void kblas_saxpy_inc1(const int N, const float alpha, const float *X, float *Y){
     register __m256 sr4 = _mm256_broadcast_ss(&alpha);
 
     if(mem >= 2*L2_SIZE && mem <= L3C_SIZE){
-        #pragma omp parallel for num_threads(2) proc_bind(spread) schedule(static, 128)
+        #pragma omp parallel for num_threads(4) proc_bind(spread) schedule(static, 128)
         for(int i=0; i<N-96+1; i+=96){
-            UNROLLED_VECT_READ_MULT
+            UNROLLED_VECT_READ_MULT 
             UNROLLED_VECT_STORE
         }
     }
     else if(mem > L3C_SIZE && mem < BIG_MEM){
-        #pragma omp parallel for num_threads(4) proc_bind(spread)
+        #pragma omp parallel for num_threads(4) proc_bind(spread) schedule(static, 64)
         for(int i=0; i<N-96+1; i+=96){
             UNROLLED_VECT_READ_MULT
             UNROLLED_VECT_STORE
         }
     }
     else if(mem >= BIG_MEM){
-        #pragma omp parallel for num_threads(2) proc_bind(spread)
+        #pragma omp parallel for num_threads(4) proc_bind(spread) schedule(static, 64)
         for(int i=0; i<N-96+1; i+=96){
-            UNROLLED_VECT_READ_MULT 
+            UNROLLED_VECT_READ_MULT
             UNROLLED_VECT_STREAM
         }
     }

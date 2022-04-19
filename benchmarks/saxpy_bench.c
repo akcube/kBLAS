@@ -94,7 +94,7 @@ int main(int argc, char *argv[]){
 				fill_cache((const char*) Y, N * sizeof(float));
 		 		START_RECORD
 		 			
-		 			bli_scalv(&alpha_b, &X_b);
+		 			bli_axpyv(&alpha_b, &X_b, &Y_b);
 		 			
 		 		END_RECORD
 			BENCH_END

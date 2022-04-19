@@ -94,14 +94,14 @@ int main(int argc, char *argv[]){
 				fill_cache((const char*) Y, N * sizeof(double));
 		 		START_RECORD
 		 			
-		 			bli_scalv(&alpha_b, &X_b);
+		 			bli_axpyv(&alpha_b, &X_b, &Y_b);
 		 			
 		 		END_RECORD
 			BENCH_END
 
 			bli_obj_free(&alpha_b);
 			printf("Verified:\t\t\t");
-			if(dverify_benchmark(Y, 1, N, verif_dir, names[i])) puts("Yes");
+			if(dverify_benchmark(X, 1, N, verif_dir, names[i])) puts("Yes");
 			else puts("No");
 		}
 		// ------------------------------------------------------------------------
