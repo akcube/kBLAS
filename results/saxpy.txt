@@ -2,289 +2,289 @@ min: 0, max: 9223372036854775807
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 6400, Memory: 0.048828 MB
 
-GFLOPS:				28.047321
-Bandwidth:			112.189285 GB/s
+GFLOPS:				29.859647
+Bandwidth:			119.438588 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 6400, Memory: 0.048828 MB
 
-GFLOPS:				46.021189
-Bandwidth:			184.084754 GB/s
+GFLOPS:				49.341724
+Bandwidth:			197.366896 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 6400, Memory: 0.048828 MB
 
-GFLOPS:				39.262778
-Bandwidth:			157.051110 GB/s
+GFLOPS:				24.858616
+Bandwidth:			99.434465 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 12800, Memory: 0.097656 MB
 
-GFLOPS:				31.061878
-Bandwidth:			124.247514 GB/s
+GFLOPS:				31.733150
+Bandwidth:			126.932602 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 12800, Memory: 0.097656 MB
 
-GFLOPS:				47.225670
-Bandwidth:			188.902679 GB/s
+GFLOPS:				50.156231
+Bandwidth:			200.624924 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 12800, Memory: 0.097656 MB
 
-GFLOPS:				41.536703
-Bandwidth:			166.146811 GB/s
+GFLOPS:				27.479709
+Bandwidth:			109.918834 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 38400, Memory: 0.292969 MB
 
-GFLOPS:				29.132798
-Bandwidth:			116.531191 GB/s
+GFLOPS:				31.024109
+Bandwidth:			124.096436 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 38400, Memory: 0.292969 MB
 
-GFLOPS:				49.225570
-Bandwidth:			196.902279 GB/s
+GFLOPS:				50.713604
+Bandwidth:			202.854417 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 38400, Memory: 0.292969 MB
 
-GFLOPS:				43.040379
-Bandwidth:			172.161516 GB/s
+GFLOPS:				29.090320
+Bandwidth:			116.361278 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 76800, Memory: 0.585938 MB
 
-GFLOPS:				21.560476
-Bandwidth:			86.241906 GB/s
+GFLOPS:				25.668780
+Bandwidth:			102.675120 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 76800, Memory: 0.585938 MB
 
-GFLOPS:				30.300350
-Bandwidth:			121.201400 GB/s
+GFLOPS:				35.101647
+Bandwidth:			140.406589 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 76800, Memory: 0.585938 MB
 
-GFLOPS:				32.943744
-Bandwidth:			131.774977 GB/s
+GFLOPS:				24.976057
+Bandwidth:			99.904229 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 153600, Memory: 1.171875 MB
 
-GFLOPS:				23.294963
-Bandwidth:			93.179852 GB/s
+GFLOPS:				24.229905
+Bandwidth:			96.919622 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 153600, Memory: 1.171875 MB
 
-GFLOPS:				22.946409
-Bandwidth:			91.785634 GB/s
+GFLOPS:				24.039583
+Bandwidth:			96.158330 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 153600, Memory: 1.171875 MB
 
-GFLOPS:				31.218508
-Bandwidth:			124.874030 GB/s
+GFLOPS:				22.439504
+Bandwidth:			89.758016 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 262144, Memory: 2.000000 MB
 
-GFLOPS:				20.931871
-Bandwidth:			83.727486 GB/s
+GFLOPS:				23.687517
+Bandwidth:			94.750069 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 262144, Memory: 2.000000 MB
 
-GFLOPS:				38.154546
-Bandwidth:			152.618185 GB/s
+GFLOPS:				52.280572
+Bandwidth:			209.122289 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 262144, Memory: 2.000000 MB
 
-GFLOPS:				34.948395
-Bandwidth:			139.793581 GB/s
+GFLOPS:				24.472948
+Bandwidth:			97.891790 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 655360, Memory: 5.000000 MB
 
-GFLOPS:				24.793012
-Bandwidth:			99.172046 GB/s
+GFLOPS:				23.320834
+Bandwidth:			93.283335 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 655360, Memory: 5.000000 MB
 
-GFLOPS:				53.352486
-Bandwidth:			213.409944 GB/s
+GFLOPS:				59.283204
+Bandwidth:			237.132814 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 655360, Memory: 5.000000 MB
 
-GFLOPS:				36.138245
-Bandwidth:			144.552979 GB/s
+GFLOPS:				25.659796
+Bandwidth:			102.639183 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 1048576, Memory: 8.000000 MB
 
-GFLOPS:				19.458984
-Bandwidth:			77.835935 GB/s
+GFLOPS:				21.501344
+Bandwidth:			86.005375 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 1048576, Memory: 8.000000 MB
 
-GFLOPS:				52.197475
-Bandwidth:			208.789899 GB/s
+GFLOPS:				55.302238
+Bandwidth:			221.208953 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 1048576, Memory: 8.000000 MB
 
-GFLOPS:				37.863081
-Bandwidth:			151.452326 GB/s
+GFLOPS:				24.593253
+Bandwidth:			98.373012 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 1572864, Memory: 12.000000 MB
 
-GFLOPS:				17.206879
-Bandwidth:			68.827515 GB/s
+GFLOPS:				17.289664
+Bandwidth:			69.158656 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 1572864, Memory: 12.000000 MB
 
-GFLOPS:				29.295417
-Bandwidth:			117.181667 GB/s
+GFLOPS:				32.980950
+Bandwidth:			131.923800 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 1572864, Memory: 12.000000 MB
 
-GFLOPS:				28.113838
-Bandwidth:			112.455350 GB/s
+GFLOPS:				17.153425
+Bandwidth:			68.613700 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 2097152, Memory: 16.000000 MB
 
-GFLOPS:				7.809456
-Bandwidth:			31.237823 GB/s
+GFLOPS:				8.553026
+Bandwidth:			34.212103 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 2097152, Memory: 16.000000 MB
 
-GFLOPS:				24.774313
-Bandwidth:			99.097252 GB/s
+GFLOPS:				26.180183
+Bandwidth:			104.720732 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 2097152, Memory: 16.000000 MB
 
-GFLOPS:				22.501918
-Bandwidth:			90.007671 GB/s
+GFLOPS:				8.515031
+Bandwidth:			34.060123 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 2621440, Memory: 20.000000 MB
 
-GFLOPS:				7.048972
-Bandwidth:			28.195889 GB/s
+GFLOPS:				7.555711
+Bandwidth:			30.222845 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 2621440, Memory: 20.000000 MB
 
-GFLOPS:				21.758842
-Bandwidth:			87.035369 GB/s
+GFLOPS:				23.294807
+Bandwidth:			93.179228 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 2621440, Memory: 20.000000 MB
 
-GFLOPS:				19.292226
-Bandwidth:			77.168903 GB/s
+GFLOPS:				7.554251
+Bandwidth:			30.217002 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 4194304, Memory: 32.000000 MB
 
-GFLOPS:				6.561264
-Bandwidth:			26.245058 GB/s
+GFLOPS:				7.129834
+Bandwidth:			28.519334 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 4194304, Memory: 32.000000 MB
 
-GFLOPS:				15.789359
-Bandwidth:			63.157434 GB/s
+GFLOPS:				19.466568
+Bandwidth:			77.866274 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 4194304, Memory: 32.000000 MB
 
-GFLOPS:				12.132389
-Bandwidth:			48.529556 GB/s
+GFLOPS:				7.124703
+Bandwidth:			28.498814 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 8388608, Memory: 64.000000 MB
 
-GFLOPS:				5.570572
-Bandwidth:			22.282287 GB/s
+GFLOPS:				6.110402
+Bandwidth:			24.441607 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 8388608, Memory: 64.000000 MB
 
-GFLOPS:				8.818259
-Bandwidth:			35.273035 GB/s
+GFLOPS:				13.550170
+Bandwidth:			54.200680 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 8388608, Memory: 64.000000 MB
 
-GFLOPS:				8.896142
-Bandwidth:			35.584567 GB/s
+GFLOPS:				6.138476
+Bandwidth:			24.553904 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 16777216, Memory: 128.000000 MB
 
-GFLOPS:				5.274514
-Bandwidth:			21.098055 GB/s
+GFLOPS:				5.630968
+Bandwidth:			22.523872 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 16777216, Memory: 128.000000 MB
 
-GFLOPS:				8.568020
-Bandwidth:			34.272079 GB/s
+GFLOPS:				10.816480
+Bandwidth:			43.265919 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 16777216, Memory: 128.000000 MB
 
-GFLOPS:				7.861391
-Bandwidth:			31.445565 GB/s
+GFLOPS:				5.599539
+Bandwidth:			22.398154 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 33554432, Memory: 256.000000 MB
 
-GFLOPS:				4.830061
-Bandwidth:			19.320243 GB/s
+GFLOPS:				5.466322
+Bandwidth:			21.865289 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 33554432, Memory: 256.000000 MB
 
-GFLOPS:				8.147032
-Bandwidth:			32.588127 GB/s
+GFLOPS:				11.382128
+Bandwidth:			45.528510 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 33554432, Memory: 256.000000 MB
 
-GFLOPS:				7.521106
-Bandwidth:			30.084426 GB/s
+GFLOPS:				5.474856
+Bandwidth:			21.899426 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 67108864, Memory: 512.000000 MB
 
-GFLOPS:				4.993402
-Bandwidth:			19.973609 GB/s
+GFLOPS:				5.338717
+Bandwidth:			21.354867 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 67108864, Memory: 512.000000 MB
 
-GFLOPS:				8.698993
-Bandwidth:			34.795972 GB/s
+GFLOPS:				11.466630
+Bandwidth:			45.866518 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 67108864, Memory: 512.000000 MB
 
-GFLOPS:				7.380469
-Bandwidth:			29.521877 GB/s
+GFLOPS:				5.337355
+Bandwidth:			21.349421 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - CBLAS: saxpy 1 x 134217728, Memory: 1024.000000 MB
 
-GFLOPS:				5.021062
-Bandwidth:			20.084248 GB/s
+GFLOPS:				5.389330
+Bandwidth:			21.557320 GB/s
 ------------------------------------------------------------
 Benchmark - KBLAS: saxpy 1 x 134217728, Memory: 1024.000000 MB
 
-GFLOPS:				8.811575
-Bandwidth:			35.246298 GB/s
+GFLOPS:				11.053607
+Bandwidth:			44.214430 GB/s
 Verified:			Yes
 ------------------------------------------------------------
 Benchmark - BLIS : saxpy 1 x 134217728, Memory: 1024.000000 MB
 
-GFLOPS:				7.364888
-Bandwidth:			29.459553 GB/s
+GFLOPS:				5.135651
+Bandwidth:			20.542604 GB/s
 Verified:			Yes
