@@ -1,0 +1,10 @@
+------------------------------------------------------------
+Single-thread:	Benchmark information - Independent R/W
+------------------------------------------------------------
+Total runtime:			5.000988
+Result computed:		0.000000
+Total FLOPS computed:		0
+Total memory accesses:		227520000000
+
+GFLOPS:				0.000000
+Bandwidth:			45.495008 GB/s
