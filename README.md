@@ -8,17 +8,17 @@ As of now, these are the functions I plan on implementing. As the project mature
 
 ## Level 1
 
-[x] sscalv, dscalv
-[x] sdot, ddot
-[x] saxpy, saxpy
+- [x] sscalv, dscalv
+- [x] sdot, ddot
+- [x] saxpy, saxpy
 
 ## Level 2
 
-[ ] sgemv, dgemv
+- [ ] sgemv, dgemv
 
 ## Level 3
 
-[ ] sgemm, dgemm
+- [ ] sgemm, dgemm
 
 ## Benchmark information
 
@@ -53,21 +53,21 @@ I'm only posting the graphed versions of the results I obtained here. For more p
 
 1. `sscal` and `dscal`
 
-   ![sscal_benchmark](/home/akcube/Desktop/kBLIS/assets/sscal.png)
+![sscal_benchmark](/assets/sscal.png)
 
-![dscal_benchmark](/home/akcube/Desktop/kBLIS/assets/dscal.png)
+![dscal_benchmark](/assets/dscal.png)
 
 2. `ssdot` and `ddot`
 
-   ![sdot_benchmark](/home/akcube/Desktop/kBLIS/assets/sdot.png)
+![sdot_benchmark](/assets/sdot.png)
 
-![ddot_benchmark](/home/akcube/Desktop/kBLIS/assets/ddot.png)
+![ddot_benchmark](/assets/ddot.png)
 
 3. `saxpy` and `daxpy`
 
-   ![saxpy_benchmark](/home/akcube/Desktop/kBLIS/assets/saxpy.png)
+![saxpy_benchmark](/assets/saxpy.png)
 
-![daxpy_benchmark](/home/akcube/Desktop/kBLIS/assets/daxpy.png)
+![daxpy_benchmark](/assets/daxpy.png)
 
 ### Level 2
 
