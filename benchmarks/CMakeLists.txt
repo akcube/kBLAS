@@ -16,7 +16,8 @@ set(BENCH_EXECUTABLES
 	ddot_bench
 	saxpy_bench
 	daxpy_bench
-	sgemv_bench)
+	sgemv_bench
+	dgemv_bench)
 
 # Create the targets
 foreach(exec ${BENCH_EXECUTABLES})
