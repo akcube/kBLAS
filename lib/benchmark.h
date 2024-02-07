@@ -80,7 +80,7 @@ double* get_darg(FILE *fptr, int *_n, int *_m);
 
 #define BENCH_END runtime += en - st; \
         } while(runtime < min_duration); \
-        compressed_pretty_print(runtime, ret); \
+        pretty_print(runtime, ret); \
         free(tinfo); }
 
 #endif
