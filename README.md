@@ -2,7 +2,7 @@
 
 This is a pet project where I try my hand at implementing some of the functions as specified by the BLAS standard. It's more a learning exercise than anything else so I'll be toying with several architecture specific optimizations and write the SIMD intrinsics myself to get the job done. 
 
-I document my entire journey working on this project here: [Optimizing kBLAS](https://brass-collar-d40.notion.site/Optimizing-kBLAS-f7d754020cc2452f8fdfdbc760e458e1)
+I document my entire journey working on this project here: [Optimizing kBLAS](https://akcube.github.io/blog/mega-project-kblas-writing-a-benchmark-library-in-c-optimizing-l1-l2-basic-linear-algebra-subprograms/)
 
 As of now, these are the functions I plan on implementing. As the project matures and I learn more I'll consider expanding to and implementing more functions. 
 
